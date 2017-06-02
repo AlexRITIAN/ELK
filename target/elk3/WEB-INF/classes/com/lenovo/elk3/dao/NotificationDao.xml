@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lenovo.elk3.dao.NotificationDao">
+
+	<insert id="insert" parameterType="NotificationBean" useGeneratedKeys="true" keyProperty="id">
+		insert into tbl_notification(msg,content,time)
+		values(#{msg},#{content},#{time})
+	</insert>
+
+	<update id="updateStatusByid">
+		update tbl_notification set status = #{status} where
+		id = #{id}
+	</update>
+
+	<update id="updateDelmark">
+		update tbl_notification set delmark = #{delmark}
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="java.util.List">
+		delete from tbl_notification where id in
+		<foreach collection="list" open="(" separator="," close=")"
+			item="item" index="index">
+			#{item.id}
+		</foreach>
+	</delete>
+
+	<select id="selectByUserId" resultType="NotificationBean">
+		select tn.id,tn.msg,tunr.status as status,tn.content,tn.time from
+		tbl_notification as tn join tbl_user_notification_relation as tunr on
+		tn.id = tunr.notification_id where tunr.user_id = #{0} order by tn.time desc limit #{1},#{2}
+	</select>
+	
+	<select id="selectByUserIdNolimit" resultType="NotificationBean">
+		select tn.id,tn.msg,tunr.status as status,tn.content,tn.time from
+		tbl_notification as tn join tbl_user_notification_relation as tunr on
+		tn.id = tunr.notification_id where tunr.user_id = #{0} and tunr.status = 0 order by tn.time desc
+	</select>
+	
+	<select id="selectByUserIdAll" resultType="NotificationBean">
+		select tn.id,tn.msg,tunr.status as status,tn.content,tn.time from
+		tbl_notification as tn join tbl_user_notification_relation as tunr on
+		tn.id = tunr.notification_id where tunr.user_id = #{0} order by tn.time desc
+	</select>
+	
+	<select id="selectById">
+		select * from tbl_notification where id = #{id}
+	</select>
+	
+	<update id="updateStatus" parameterType="NotificationBean">
+		update tbl_notification set status = #{status} where id = #{id}
+	</update>
+</mapper>

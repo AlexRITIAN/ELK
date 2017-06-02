@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lenovo.elk3.dao.RoleDao">
+	
+	<update id="update" parameterType="RoleBean">
+		update tbl_role set code=#{code},name=#{name},remark=#{remark},editTime=#{editTime} where id=#{id}
+	</update>
+	
+	<select id="selectById" parameterType="int" resultType="RoleBean">
+		select * from tbl_role where id = #{id}
+	</select>
+	
+	<select id="selectPermissionByRoleId" resultType="PermissionBean">
+		select p.id,p.name,p.operationUrl,p.pid from tbl_role_permission_relation as rpr join tbl_permission as p on rpr.permission_id = p.id where rpr.role_id = #{roleId}
+	</select>
+	
+	<select id="selectAll" resultType="RoleBean">
+		select * from tbl_role
+	</select>
+	
+	<insert id="insert" parameterType="RoleBean" useGeneratedKeys="true" keyProperty="id">
+		insert into tbl_role(name,remark) values(#{name},#{remark})
+	</insert>
+	
+	<delete id="delete" parameterType="java.util.List">
+		delete from tbl_role where id in 
+		<foreach collection="list" open="(" separator="," close=")" item="item" index="index">
+			 #{item.id}
+		</foreach>
+	</delete>
+</mapper>
