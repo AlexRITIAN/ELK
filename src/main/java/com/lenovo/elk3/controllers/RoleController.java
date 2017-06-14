@@ -3,9 +3,11 @@ package com.lenovo.elk3.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +46,8 @@ public class RoleController {
 	public void getRoleById(int roleId,HttpServletResponse response){
 		PrintWriter out = null;
 		try {
-			StringBuffer buffer = new StringBuffer();
-			buffer.append("{\"role\":" + roleService.getRoleByid(roleId) + ",\"rolePermission\":" + ParseJSON.getJSONArray(roleService.getPermissionByRoleId(roleId)) + "}");
 			out = response.getWriter();
-			logger.debug("buffer------------------------->" + buffer.toString());
-			out.print(ParseJSON.getJSON(buffer.toString()));
+			out.print(ParseJSON.getJSON(roleService.getRoleByid(roleId)));
 			out.close();
 		} catch (IOException e) {
 			logger.error(e.getMessage(),e);
@@ -88,6 +87,55 @@ public class RoleController {
 			out.print(roleService.delete(roleIds));
 			out.close();
 		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+		}
+	}
+	
+	@RequestMapping("/role/getRoleByUid.do")
+	public void getRoleByUid(int uid,HttpServletResponse response){
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+			out.print(ParseJSON.getJSONArray(roleService.getRoleByUid(uid)));
+			out.close();
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+		}
+	}
+	
+	@RequestMapping("/role/detailPage.do")
+	public String detailPage(HttpServletRequest request, Map<String, Integer> map, int roleId) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("username") != null) {
+			try {
+				map.put("roleId", roleId);
+			} catch (Exception e) {
+				logger.error(e.getMessage(), e);
+			}
+		} else {
+			return "login";
+		}
+		return "settingRoleDetail";
+	}
+	
+	@RequestMapping("/role/addRolePage.do")
+	public String indexAddRole(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("username") != null) {
+		} else {
+			return "login";
+		}
+		return "addRole";
+	}
+	
+	@RequestMapping("/role/getAllLimit.do")
+	public void getAllLimit(HttpServletResponse response,int from){
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+			out.print(ParseJSON.getJSONArray(roleService.getAllLimit(from)));
+			out.close();
+		} catch (IOException e) {
 			logger.error(e.getMessage(),e);
 		}
 	}

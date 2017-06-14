@@ -107,7 +107,7 @@
 									<li><a href="#">Notification 4</a></li>
 									<li><a href="#">Another notification</a></li>
 								</ul></li>
-							<li><a href="<%=basePath%>index/setting.do"> <i
+							<li><a href="<%=basePath%>setting/show.do?url=/index/setting"> <i
 									class="ti-settings"></i>
 									<p>Settings</p>
 							</a></li>
@@ -231,7 +231,7 @@
 									</div>
 									<div class="col-md-6">
 										<button type="button" class="btn btn-info btn-fill btn-wd"
-											onclick="mutilsearch(0,9);">
+											onclick="mutilsearch(0);">
 											<span class="ti-search"></span>Search
 										</button>
 									</div>

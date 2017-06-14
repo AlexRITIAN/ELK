@@ -39,8 +39,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		tn.id = tunr.notification_id where tunr.user_id = #{0} and tunr.status = 0 order by tn.time desc
 	</select>
 	
-	<select id="selectByUserIdAll" resultType="NotificationBean">
-		select tn.id,tn.msg,tunr.status as status,tn.content,tn.time from
+	<select id="selectByUserIdAll" resultType="int">
+		select count(*) from
 		tbl_notification as tn join tbl_user_notification_relation as tunr on
 		tn.id = tunr.notification_id where tunr.user_id = #{0} order by tn.time desc
 	</select>

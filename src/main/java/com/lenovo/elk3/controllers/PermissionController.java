@@ -2,8 +2,11 @@ package com.lenovo.elk3.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lenovo.elk3.beans.PermissionBean;
 import com.lenovo.elk3.service.IPermissionService;
+import com.lenovo.elk3.utils.ParseJSON;
 
 @Controller
 public class PermissionController {
@@ -81,4 +85,54 @@ public class PermissionController {
 			logger.error(e.getMessage(),e);
 		}
 	}
+	
+	@RequestMapping("/permission/addPermissionPage.do")
+	public String indexAddPermission(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("username") != null) {
+		} else {
+			return "login";
+		}
+		return "addPermission";
+	}
+	
+	@RequestMapping("/permission/permissionDetailPage.do")
+	public String indexPermissionDetail(HttpServletRequest request, Map<String, Integer> map, int id) {
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("username") != null) {
+			try {
+				map.put("permissionId", id);
+			} catch (Exception e) {
+				logger.error(e.getMessage(), e);
+			}
+		} else {
+			return "login";
+		}
+		return "settingPermissionDetail";
+	}
+	
+	@RequestMapping("/permission/getByRoleId.do")
+	public void getByRoleId(HttpServletResponse response,int id){
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+			out.print(ParseJSON.getJSONArray(perService.getByRoleId(id)));
+			out.close();
+		} catch (IOException e) {
+			logger.error(e.getMessage(),e);
+		}
+	}
+	
+	@RequestMapping("/permission/getAllLimit.do")
+	public void getAllLimit(HttpServletResponse response,int from){
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+			out.print(ParseJSON.getJSONArray(perService.getAllLimit(from)));
+			out.close();
+		} catch (IOException e) {
+			logger.error(e.getMessage(),e);
+		}
+	}
+
 }

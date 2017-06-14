@@ -9,7 +9,6 @@ public class PermissionBean {
 	int orderNo;
 	String createTime;
 	String editTime;
-	int pid;
 	String remark;
 	
 	public String getRemark() {
@@ -66,17 +65,11 @@ public class PermissionBean {
 	public void setEditTime(String editTime) {
 		this.editTime = editTime;
 	}
-	public int getPid() {
-		return pid;
-	}
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
 	@Override
 	public String toString() {
 		return "PermissionBean [id=" + id + ", code=" + code + ", name=" + name + ", moduleUrl=" + moduleUrl
 				+ ", operationUrl=" + operationUrl + ", orderNo=" + orderNo + ", createTime=" + createTime
-				+ ", editTime=" + editTime + ", pid=" + pid + ", remark=" + remark + "]";
+				+ ", editTime=" + editTime + ", remark=" + remark + "]";
 	}
 	
 	

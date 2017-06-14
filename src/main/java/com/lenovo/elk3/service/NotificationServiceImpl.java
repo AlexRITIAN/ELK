@@ -81,7 +81,7 @@ public class NotificationServiceImpl implements INotificationService {
 
 	@Override
 	public int getTotal(int user_id) throws Exception {
-		return notificationdao.selectByUserIdAll(user_id).size();
+		return notificationdao.selectByUserIdAll(user_id);
 	}
 
 }

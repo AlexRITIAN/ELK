@@ -16,11 +16,11 @@ public class ElasticsearchUtil {
 	
 	private static Logger logger = Logger.getLogger(ElasticsearchUtil.class);
 
-	public static JSONObject select(String index, String type) throws ClientProtocolException, IOException {
+	/*public static JSONObject select(String index, String type) throws ClientProtocolException, IOException {
 		LoadConfig lc = new LoadConfig("conf.properties");
 		String string = HttpClientUtil.get(lc.getProperty("Elasticsearch_url") + index + "/" + type + "/_search");
 		return ParseJSON.getJSON(string);
-	}
+	}*/
 
 	public static JSONObject add(BlogBean blog, String index, String type) throws IOException {
 		LoadConfig lc = new LoadConfig("conf.properties");
@@ -47,12 +47,12 @@ public class ElasticsearchUtil {
 		return ParseJSON.getJSON(post);
 	}
 
-	public static JSONObject add(String index, String type, String tag, String username) throws IOException {
+	/*public static JSONObject add(String index, String type, String tag, String username) throws IOException {
 		LoadConfig lc = new LoadConfig("conf.properties");
 		String postData = "{\"tag\":\"" + tag + "\",\"author\":\"" + username + "\"}";
 		String post = HttpClientUtil.post(lc.getProperty("Elasticsearch_url") + "/" + index + "/" + type, postData);
 		return ParseJSON.getJSON(post);
-	}
+	}*/
 
 	public static JSONObject single(String index, String type, String id) throws IOException {
 		LoadConfig lc = new LoadConfig("conf.properties");
@@ -69,23 +69,23 @@ public class ElasticsearchUtil {
 		return ParseJSON.getJSON(post);
 	}
 
-	public static JSONObject updateTag(String index, String type, String id, String tag, String author)
+	/*public static JSONObject updateTag(String index, String type, String id, String tag, String author)
 			throws IOException {
 		LoadConfig lc = new LoadConfig("conf.properties");
 		String postData = "{\"tag\":\"" + tag + "\",\"author\":\"" + author + "\"}";
 		String post = HttpClientUtil.post(lc.getProperty("Elasticsearch_url") + "/" + index + "/" + type + "/" + id,
 				postData);
 		return ParseJSON.getJSON(post);
-	}
+	}*/
 
-	public static JSONObject bool(String index, String type, String tag, String author) throws IOException {
+	/*public static JSONObject bool(String index, String type, String tag, String author) throws IOException {
 		LoadConfig lc = new LoadConfig("conf.properties");
 		String postData = "{\"query\":{\"bool\":{\"must\":[{\"match\":{\"author\":\"" + author
 				+ "\"}},{\"term\":{\"tag\":\"" + tag + "\"}}]}}}";
 		String post = HttpClientUtil.post(lc.getProperty("Elasticsearch_url") + "/" + index + "/" + type + "/_search",
 				postData);
 		return ParseJSON.getJSON(post);
-	}
+	}*/
 
 	public static JSONObject delete(String index, String type, String id) throws IOException {
 		LoadConfig lc = new LoadConfig("conf.properties");

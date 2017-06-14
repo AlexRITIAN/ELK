@@ -11,139 +11,6 @@ $.fn.getBackgroundColor = function() {
 	return rgb;
 }
 
-function blogshow(parm, match) {
-	$
-			.ajax({
-				type : 'post',
-				url : 'http://10.99.205.240:8080/elk3/search/search.do',
-				data : {
-					'index' : 'kb1',
-					'type' : 'data',
-					'parm' : parm,
-					'matchStr' : match
-				},
-				dataType : 'json',
-				success : function(data) {
-					$("#show_blog").html("");
-					for (var i = 0; i < data.blogs.length; i++) {
-						$("#show_blog")
-								.append(
-										"<div class=\"col-md-8 single-post-contents\">"
-												+ "<article class=\"single-post-content row m0 post\">"
-												+ "<header class=\"row\">"
-												+ "<h5 class=\"post-meta\">"
-												+ "<a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
-												+ data.blogs[i]._index
-												+ "&type="
-												+ data.blogs[i]._type
-												+ "&id="
-												+ data.blogs[i]._id
-												+ "\" class=\"date\">"
-												+ data.blogs[i]._source.date
-												+ "</a>"
-												+ "<span class=\"post-author\"><i>by</i><a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
-												+ data.blogs[i]._index
-												+ "&type="
-												+ data.blogs[i]._type
-												+ "&id="
-												+ data.blogs[i]._id
-												+ "\">"
-												+ data.blogs[i]._source.author
-												+ "</a></span>"
-												+ "</h5>"
-												+ "<a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
-												+ data.blogs[i]._index
-												+ "&type="
-												+ data.blogs[i]._type
-												+ "&id="
-												+ data.blogs[i]._id
-												+ "\"><h2 class=\"post-title\">"
-												+ data.blogs[i]._source.title
-												+ "</h2></a>"
-												+ "<div class=\"row\">"
-												+ "<h5 class=\"taxonomy pull-left\"><i>in</i>"
-												+ data.blogs[i]._source.tag
-												+ "</h5>"
-												+ "<div class=\"response-count pull-right\"><img src=\"http://10.99.205.240:8080/elk3/images/comment-icon-gray.png\" alt=\"\">5</div>"
-												+ "</div>"
-												+ "</header>"
-												+ "<div class=\"post-content row\">"
-												+ "<p>"
-												+ data.blogs[i]._source.description
-												+ "</p><br></div></article></div>");
-					}
-				}
-			});
-}
-
-function blogshowAll() {
-	$
-			.ajax({
-				type : 'get',
-				url : 'http://10.99.205.240:8080/elk3/search/searchAll.do',
-				data : {
-					'index' : 'kb1',
-					'type' : 'data',
-					'from' : 0,
-					'size' : 10
-				},
-				dataType : 'json',
-				success : function(data) {
-					$("#show_blog").html("");
-					for (var i = 0; i < data.blogs.length; i++) {
-
-						$("#show_blog")
-								.append(
-										"<div class=\"col-md-8 single-post-contents\">"
-												+ "<article class=\"single-post-content row m0 post\">"
-												+ "<header class=\"row\">"
-												+ "<h5 class=\"post-meta\">"
-												+ "<a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
-												+ data.blogs[i]._index
-												+ "&type="
-												+ data.blogs[i]._type
-												+ "&id="
-												+ data.blogs[i]._id
-												+ "\" class=\"date\">"
-												+ data.blogs[i]._source.date
-												+ "</a>"
-												+ "<span class=\"post-author\"><i>by</i><a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
-												+ data.blogs[i]._index
-												+ "&type="
-												+ data.blogs[i]._type
-												+ "&id="
-												+ data.blogs[i]._id
-												+ "\">"
-												+ data.blogs[i]._source.author
-												+ "</a></span>"
-												+ "</h5>"
-												+ "<a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
-												+ data.blogs[i]._index
-												+ "&type="
-												+ data.blogs[i]._type
-												+ "&id="
-												+ data.blogs[i]._id
-												+ "\"><h2 class=\"post-title\">"
-												+ data.blogs[i]._source.title
-												+ "</h2></a>"
-												+ "<div class=\"row\">"
-												+ "<h5 class=\"taxonomy pull-left\"><i>in</i>"
-												+ data.blogs[i]._source.tag
-												+ "</h5>"
-												+ "<div class=\"response-count pull-right\"><img src=\"http://10.99.205.240:8080/elk3/images/comment-icon-gray.png\" alt=\"\">5</div>"
-												+ "</div>"
-												+ "</header>"
-												+ "<div class=\"post-content row\">"
-												+ "<p>"
-												+ data.blogs[i]._source.description
-												+ "</p><br></div></article></div>");
-					}
-
-				}
-
-			});
-}
-
 function mutilsearch(from) {
 	var total;
 	var elk_index = "";
@@ -204,7 +71,7 @@ function mutilsearch(from) {
 							$("#show_blog")
 									.append(
 											"<div class=\"col-md-12\"><div class=\"card\">"
-													+ "<div class=\"header\"><a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
+													+ "<div class=\"header\"><a href=\"http://10.99.205.240:8080/elk3/blog/single.do?index="
 													+ data.blogs[i]._index
 													+ "&type="
 													+ data.blogs[i]._type
@@ -277,7 +144,7 @@ function mutilsearch(from) {
 							$("#show_blog")
 									.append(
 											"<div class=\"col-md-12\"><div class=\"card\">"
-													+ "<div class=\"header\"><a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
+													+ "<div class=\"header\"><a href=\"http://10.99.205.240:8080/elk3/blog/single.do?index="
 													+ data.blogs[i]._index
 													+ "&type="
 													+ data.blogs[i]._type
@@ -335,106 +202,7 @@ function downPage_btn_click(){
 	$("#pageNow").val(page);
 }
 
-function indexLoad() {
-	$("#from").val("0");
-	$
-			.ajax({
-				type : 'get',
-				url : 'http://10.99.205.240:8080/elk3/index/index.do',
-				data : {
-					'index' : 'kb1',
-					'type' : 'data',
-					'from' : 0,
-					'size' : 10
-				},
-				dataType : 'json',
-				success : function(data) {
-					if (data.flag == 1) {
-						$("#login-span").show();
-						$("#username-span").hide();
-					} else {
-						$("#login-span").hide();
-						$("#username-span").show();
-						$("#username-span").text(data.username);
-					}
-					for (var i = 0; i < data.blogs.length; i++) {
-						/*
-						 * $("#blog_date_" +
-						 * i).text(data.blogs[i]._source.date); $("#blog_date_" +
-						 * i).attr("href","http://10.99.205.240:8080/elk3/index/single.do?index=" +
-						 * data.blogs[i]._index + "&type=" + data.blogs[i]._type +
-						 * "&id=" + data.blogs[i]._id); $("#blog_author_" +
-						 * i).text(data.blogs[i]._source.author);
-						 * $("#blog_author_" +
-						 * i).attr("href","http://10.99.205.240:8080/elk3/index/single.do?index=" +
-						 * data.blogs[i]._index + "&type=" + data.blogs[i]._type +
-						 * "&id=" + data.blogs[i]._id); $("#blog_title_" +
-						 * i).text(data.blogs[i]._source.title);
-						 * $("#blog_title_" +
-						 * i).attr("href","http://10.99.205.240:8080/elk3/index/single.do?index=" +
-						 * data.blogs[i]._index + "&type=" + data.blogs[i]._type +
-						 * "&id=" + data.blogs[i]._id); $("#blog_description_" +
-						 * i).text(data.blogs[i]._source.description);
-						 * $("#blog_tag_" + i).html("<i>in</i> <a href=\"#\">" +
-						 * data.blogs[i]._source.tag + "</a>, <a
-						 * href=\"#\">entertainment</a></h5>");
-						 */
-						$("#post-masonry")
-								.append(
-										"<article class=\"col-sm-4 post post-masonry post-format-image\">"
-												+ "<div class=\"post-wrapper row\">"
-												+ "<div class=\"featured-content row\">"
-												+ "</div>"
-												+ "<div class=\"post-excerpt row\">"
-												+ "<h5 class=\"post-meta\">"
-												+ "<a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
-												+ data.blogs[i]._index
-												+ "&type="
-												+ data.blogs[i]._type
-												+ "&id="
-												+ data.blogs[i]._id
-												+ "\" class=\"date\" id=\"blog_date_0\">"
-												+ data.blogs[i]._source.date
-												+ "</a>"
-												+ "<span class=\"post-author\"><i>by</i><a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
-												+ data.blogs[i]._index
-												+ "&type="
-												+ data.blogs[i]._type
-												+ "&id="
-												+ data.blogs[i]._id
-												+ "\" id=\"blog_author_0\">"
-												+ data.blogs[i]._source.author
-												+ "</a></span>"
-												+ "</h5>"
-												+ "<h3 class=\"post-title\"><a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
-												+ data.blogs[i]._index
-												+ "&type="
-												+ data.blogs[i]._type
-												+ "&id="
-												+ data.blogs[i]._id
-												+ "\" id=\"blog_title_0\">"
-												+ data.blogs[i]._source.title
-												+ "</a></h3>"
-												+ "<p id=\"blog_description_0\">"
-												+ data.blogs[i]._source.description
-												+ "</p>"
-												+ "<footer class=\"row\">"
-												+ "<h5 class=\"taxonomy\" id=\"blog_tag_0\"><i>in</i> <a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
-												+ data.blogs[i]._index
-												+ "&type="
-												+ data.blogs[i]._type
-												+ "&id="
-												+ data.blogs[i]._id
-												+ "\">image</a>, <a href=\"#\">entertainment</a></h5>"
-												+ "<div class=\"response-count\"><img src=\"http://10.99.205.240:8080/elk3/images/comment-icon-gray.png\" alt=\"\" id=\"blog_comment_0\">5</div>"
-												+ "</footer>"
-												+ "</div>"
-												+ "</div>" + "</article>");
-					}
-				}
 
-			});
-}
 
 function search_for_keypress(e) {
 	var keynum;
@@ -520,7 +288,7 @@ function searchLoad() {
 	
 	$.ajax({
 		type :'post',
-		url :'http://10.99.205.240:8080/elk3/user/getUsername.do',
+		url :'http://10.99.205.240:8080/elk3/login/getUsername.do',
 		data:{},
 		dataType:'json',
 		success : function(data){
@@ -568,7 +336,7 @@ function detailLoad(from) {
 												+ "','"
 												+ data.blogs[i]._id
 												+ "');\">DELETE</a></td>"
-												+ "<td><a href=\"http://10.99.205.240:8080/elk3/index/single.do?index="
+												+ "<td><a href=\"http://10.99.205.240:8080/elk3/blog/single.do?index="
 												+ data.blogs[i]._index
 												+ "&type="
 												+ data.blogs[i]._type
@@ -652,11 +420,12 @@ function detail_downPage_btn_click(){
 function blogdel(index, type, id) {
 	$.ajax({
 		type : 'post',
-		url : 'http://10.99.205.240:8080/elk3/delete/delete.do',
+		url : 'http://10.99.205.240:8080/elk3/blog/delete.do',
 		data : {
 			'index' : index,
 			'type' : type,
-			'id' : id
+			'id' : id,
+			'url' : '/blog/delete'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -701,18 +470,19 @@ function addBlogReset() {
 }
 
 function editButton() {
-	window.location.href = "http://10.99.205.240:8080/elk3/index/edit.do?index="
+	window.location.href = "http://10.99.205.240:8080/elk3/blog/editPage.do?index="
 			+ $("#index").val()
 			+ "&type="
 			+ $("#type").val()
 			+ "&id="
-			+ $("#id").val();
+			+ $("#id").val()
+			+ "&url=/bolg/update";
 }
 
 function add_submit() {
 	$.ajax({
 		type : 'post',
-		url : 'http://10.99.205.240:8080/elk3/add/add.do',
+		url : 'http://10.99.205.240:8080/elk3/blog/add.do',
 		data : {
 			'index' : $("#index").val(),
 			'type' : $("#type").val(),
@@ -722,7 +492,8 @@ function add_submit() {
 			'description' : $("#description").val(),
 			'tag' : $("#tag").val(),
 			'source_object' : $("#source_object").val(),
-			'content_show' : $("#text").val()
+			'content_show' : $("#text").val(),
+			'url' : '/blog/add'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -738,7 +509,7 @@ function add_submit() {
 function edit_submit() {
 	$.ajax({
 		type : 'post',
-		url : 'http://10.99.205.240:8080/elk3/add/edit.do',
+		url : 'http://10.99.205.240:8080/elk3/blog/edit.do',
 		data : {
 			'index' : $("#index").val(),
 			'type' : $("#type").val(),
@@ -749,7 +520,8 @@ function edit_submit() {
 			'description' : $("#description").val(),
 			'tag' : $("#tag").val(),
 			'source_object' : $("#source_object").val(),
-			'content_show' : $("#text").val()
+			'content_show' : $("#text").val(),
+			'url' : '/blog/update'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -801,24 +573,71 @@ function settingLoad() {
 	$
 			.ajax({
 				type : 'post',
-				url : 'http://10.99.205.240:8080/elk3/index/settingUserInit.do',
-				data : {},
+				url : 'http://10.99.205.240:8080/elk3/user/Init.do',
+				data : {
+					'url' : '/index/setting'
+				},
 				dataType : 'json',
 				success : function(data) {
-					$("#setting_user_tbody").html("");
-					for (var i = 0; i < data.length; i++) {
-						$("#setting_user_tbody")
-								.append(
-										"<tr><td><input type=\"checkbox\" name=\"setting_check_userid\" value=\""
-												+ data[i].id
-												+ "\">"
-												+ data[i].id
-												+ "</td><td><a href=\"javascript:void(0);\" onclick=\"setting_user_detail("
-												+ data[i].id + ");\">"
-												+ data[i].name
-												+ "</a></td><td>"
-												+ data[i].lockStatus
-												+ "</td></tr>");
+					$("#user_total_hidden").val(data.length);
+					$("#user_from_hidden").val("0");
+					$("#user_pageNow_hidden").val("1");
+					if(data.length > 5){
+						$("#user_pageNow").show();
+						$("#user_pageNow").val("1");
+						$("#user_total").text("/" + Math.ceil(data.length/5));
+						$("#btn_user_next").show();
+						$.ajax({
+							type : 'post',
+							url : 'http://10.99.205.240:8080/elk3/user/getAllLimit.do',
+							data : {
+								from : 0,
+								url : '/index/setting'
+							},
+							dataType : 'json',
+							success : function(data){
+								$("#setting_user_tbody").html("");
+								for (var i = 0; i < data.length; i++) {
+									$("#setting_user_tbody")
+											.append(
+													"<tr><td><input type=\"checkbox\" name=\"setting_check_userid\" value=\""
+															+ data[i].id
+															+ "\">"
+															+ data[i].id
+															+ "</td><td><a href=\"javascript:void(0);\" onclick=\"setting_user_detail("
+															+ data[i].id + ");\">"
+															+ data[i].name
+															+ "</a></td><td>"
+															+ data[i].lockStatus
+															+ "</td></tr>");
+								}
+							}
+						});
+					}else{
+						$("#setting_user_tbody").html("");
+						var num = 5 - data.length;
+						for (var i = 0; i < data.length; i++) {
+							$("#setting_user_tbody")
+									.append(
+											"<tr><td><input type=\"checkbox\" name=\"setting_check_userid\" value=\""
+													+ data[i].id
+													+ "\">"
+													+ data[i].id
+													+ "</td><td><a href=\"javascript:void(0);\" onclick=\"setting_user_detail("
+													+ data[i].id + ");\">"
+													+ data[i].name
+													+ "</a></td><td>"
+													+ data[i].lockStatus
+													+ "</td></tr>");
+						}
+						for(var i = 0; i < num ; i++){
+							$("#setting_user_tbody")
+							.append(
+									"<tr><td>"
+											+ "</td><td>"
+											+ "</a></td><td>"
+											+ "</td></tr>");
+						}
 					}
 				}
 			});
@@ -826,23 +645,71 @@ function settingLoad() {
 	$
 			.ajax({
 				type : 'post',
-				url : 'http://10.99.205.240:8080/elk3/index/getAllRoles.do',
-				data : {},
+				url : 'http://10.99.205.240:8080/elk3/role/getAll.do',
+				data : {
+					url : '/index/setting'
+				},
 				dataType : 'json',
 				success : function(data) {
-					$("#setting_role_tbody").html("");
-					for (var i = 0; i < data.length; i++) {
-						$("#setting_role_tbody")
-								.append(
-										"<tr><td><input type=\"checkbox\" name=\"setting_check_roleid\" value=\""
-												+ data[i].id
-												+ "\">"
-												+ data[i].id
-												+ "</td><td><a href=\"javascript:void(0);\" onclick=\"setting_role_detail("
-												+ data[i].id + ");\">"
-												+ data[i].name
-												+ "</a></td><td>"
-												+ data[i].remark + "</td></tr>");
+					$("#role_total_hidden").val(data.length);
+					$("#role_from_hidden").val("0");
+					$("#role_pageNow_hidden").val("1");
+					if(data.length > 5){
+						$("#role_pageNow").show();
+						$("#role_pageNow").val("1");
+						$("#role_total").text("/" + Math.ceil(data.length/5));
+						$("#btn_role_next").show();
+						$.ajax({
+							type : 'post',
+							url : 'http://10.99.205.240:8080/elk3/role/getAllLimit.do',
+							data : {
+								from : 0,
+								url : '/index/setting'
+							},
+							dataType : 'json',
+							success : function(data){
+								$("#setting_role_tbody").html("");
+								for (var i = 0; i < data.length; i++) {
+									$("#setting_role_tbody")
+											.append(
+													"<tr><td><input type=\"checkbox\" name=\"setting_check_roleid\" value=\""
+															+ data[i].id
+															+ "\">"
+															+ data[i].id
+															+ "</td><td><a href=\"javascript:void(0);\" onclick=\"setting_role_detail("
+															+ data[i].id + ");\">"
+															+ data[i].name
+															+ "</a></td><td>"
+															+ data[i].remark
+															+ "</td></tr>");
+								}
+							}
+						});
+					}else{
+						$("#setting_role_tbody").html("");
+						var num = 5 - data.length;
+						for (var i = 0; i < data.length; i++) {
+							$("#setting_role_tbody")
+									.append(
+											"<tr><td><input type=\"checkbox\" name=\"setting_check_roleid\" value=\""
+													+ data[i].id
+													+ "\">"
+													+ data[i].id
+													+ "</td><td><a href=\"javascript:void(0);\" onclick=\"setting_role_detail("
+													+ data[i].id + ");\">"
+													+ data[i].name
+													+ "</a></td><td>"
+													+ data[i].remark
+													+ "</td></tr>");
+						}
+						for(var i = 0; i < num ; i++){
+							$("#setting_role_tbody")
+							.append(
+									"<tr><td>"
+											+ "</td><td>"
+											+ "</a></td><td>"
+											+ "</td></tr>");
+						}
 					}
 				}
 			});
@@ -851,26 +718,197 @@ function settingLoad() {
 			.ajax({
 				type : 'post',
 				url : 'http://10.99.205.240:8080/elk3/permission/getAll.do',
-				data : {},
+				data : {
+					url : '/index/setting'
+				},
 				dataType : 'json',
 				success : function(data) {
-					$("#setting_permission_tbody").html("");
-					for (var i = 0; i < data.length; i++) {
-						$("#setting_permission_tbody")
-								.append(
-										"<tr><td><input type=\"checkbox\" name=\"setting_check_permissionid\" value=\""
-												+ data[i].id
-												+ "\">"
-												+ data[i].id
-												+ "</td><td><a href=\"javascript:void(0);\" onclick=\"setting_permission_detail("
-												+ data[i].id + ");\">"
-												+ data[i].name
-												+ "</a></td><td>"
-												+ data[i].remark
-												+ "</td></tr>");
+					$("#permission_total_hidden").val(data.length);
+					$("#permission_from_hidden").val("0");
+					$("#permission_pageNow_hidden").val("1");
+					if(data.length > 5){
+						$("#permission_pageNow").show();
+						$("#permission_pageNow").val("1");
+						$("#permission_total").text("/" + Math.ceil(data.length/5));
+						$("#btn_permission_next").show();
+						$.ajax({
+							type : 'post',
+							url : 'http://10.99.205.240:8080/elk3/permission/getAllLimit.do',
+							data : {
+								from : 0
+							},
+							dataType : 'json',
+							success : function(data){
+								$("#setting_permission_tbody").html("");
+								for (var i = 0; i < data.length; i++) {
+									$("#setting_permission_tbody")
+											.append(
+													"<tr><td><input type=\"checkbox\" name=\"setting_check_permissionid\" value=\""
+															+ data[i].id
+															+ "\">"
+															+ data[i].id
+															+ "</td><td><a href=\"javascript:void(0);\" onclick=\"setting_permission_detail("
+															+ data[i].id + ");\">"
+															+ data[i].name
+															+ "</a></td><td>"
+															+ data[i].remark
+															+ "</td></tr>");
+								}
+							}
+						});
+					}else{
+						$("#setting_permission_tbody").html("");
+						var num = 5 - data.length;
+						for (var i = 0; i < data.length; i++) {
+							$("#setting_permission_tbody")
+									.append(
+											"<tr><td><input type=\"checkbox\" name=\"setting_check_permissionid\" value=\""
+													+ data[i].id
+													+ "\">"
+													+ data[i].id
+													+ "</td><td><a href=\"javascript:void(0);\" onclick=\"setting_permission_detail("
+													+ data[i].id + ");\">"
+													+ data[i].name
+													+ "</a></td><td>"
+													+ data[i].remark
+													+ "</td></tr>");
+						}
+						for(var i = 0; i < num ; i++){
+							$("#setting_permission_tbody")
+							.append(
+									"<tr><td>"
+											+ "</td><td>"
+											+ "</a></td><td>"
+											+ "</td></tr>");
+						}
 					}
 				}
 			});
+}
+
+function setting_prev(name){
+	var from_id = name + "_from_hidden";
+	var pageNowhid_id = name + "_pageNow_hidden";
+	var pageNow_id = name + "_pageNow";
+	var total_id = name + "_total_hidden";
+	
+	var prev_id = "btn_" + name + "_prev";
+	var next_id = "btn_" + name + "_next";
+	
+	var total = Number($("#" + total_id + "").val());
+	var pageNow = Number($("#" + pageNowhid_id + "").val()) - 1;
+	var from = Number($("#" + from_id + "").val()) - 5;
+	
+	$("#" + from_id + "").val(from);
+	$("#" + pageNowhid_id + "").val(pageNow);
+	$("#" + pageNow_id + "").val(pageNow);
+	
+	limit4Name(name,from);
+	
+	if(from > 0){
+		$("#" + prev_id + "").show();
+	}else{
+		$("#" + prev_id + "").hide();
+	}
+
+	if(total - from > 5){
+		$("#" + next_id + "").show();
+	}else{
+		$("#" + next_id + "").hide();
+	}
+}
+
+function setting_next(name){
+	var from_id = name + "_from_hidden";
+	var pageNowhid_id = name + "_pageNow_hidden";
+	var pageNow_id = name + "_pageNow";
+	var total_id = name + "_total_hidden";
+	
+	var prev_id = "btn_" + name + "_prev";
+	var next_id = "btn_" + name + "_next";
+	
+	var total = Number($("#" + total_id + "").val());
+	var pageNow = Number($("#" + pageNowhid_id + "").val()) + 1;
+	var from = Number($("#" + from_id + "").val()) + 5;
+	
+	$("#" + from_id + "").val(from);
+	$("#" + pageNowhid_id + "").val(pageNow);
+	$("#" + pageNow_id + "").val(pageNow);
+	
+	limit4Name(name,from);
+	
+	if(from > 0){
+		$("#" + prev_id + "").show();
+	}else{
+		$("#" + prev_id + "").hide();
+	}
+
+	if(total - from > 5){
+		$("#" + next_id + "").show();
+	}else{
+		$("#" + next_id + "").hide();
+	}
+}
+
+function limit4Name(name,from){
+	$.ajax({
+		type : 'post',
+		url : 'http://10.99.205.240:8080/elk3/' + name + '/getAllLimit.do',
+		data : {
+			from : from,
+			url : '/index/setting'
+		},
+		dataType : 'json',
+		success : function(data){
+			var tbody_id = "setting_" + name + "_tbody";
+			var check_id = "setting_check_" + name + "id";
+			var detail_id = "setting_" + name + "_detail";
+			$("#" + tbody_id + "").html("");
+			if(name == "user"){
+				
+				for (var i = 0; i < data.length; i++) {
+					$("#" + tbody_id + "")
+					.append(
+							"<tr><td><input type=\"checkbox\" name=\"" + check_id + "\" value=\""
+							+ data[i].id
+							+ "\">"
+							+ data[i].id
+							+ "</td><td><a href=\"javascript:void(0);\" onclick=\"" + detail_id + "("
+							+ data[i].id + ");\">"
+							+ data[i].name
+							+ "</a></td><td>"
+							+ data[i].lockStatus
+							+ "</td></tr>");
+				}
+			}else{
+				for (var i = 0; i < data.length; i++) {
+					$("#" + tbody_id + "")
+					.append(
+							"<tr><td><input type=\"checkbox\" name=\"" + check_id + "\" value=\""
+							+ data[i].id
+							+ "\">"
+							+ data[i].id
+							+ "</td><td><a href=\"javascript:void(0);\" onclick=\"" + detail_id + "("
+							+ data[i].id + ");\">"
+							+ data[i].name
+							+ "</a></td><td>"
+							+ data[i].remark
+							+ "</td></tr>");
+				}
+			}
+			if(data.length != 5){
+				for(var i = 0; i < 5 - data.length;i++){
+					$("#" + tbody_id + "")
+					.append(
+							"<tr><td>"
+									+ "</td><td>"
+									+ "</a></td><td>"
+									+ "</td></tr>");
+				}
+			}
+			
+		}
+	});
 }
 
 function whiteListAdd() {
@@ -923,7 +961,7 @@ function add_notification(operation){
 				type : 'post',
 				url : 'http://10.99.205.240:8080/elk3/unr/add.do',
 				data : {
-					operationUrl : "/index/setting.do",
+					operationUrl : "/index/setting",
 					notification_id : data
 				},
 				dataType : 'json',
@@ -938,8 +976,8 @@ function add_notification(operation){
 function setting_user_detail(id) {
 	window
 			.open(
-					"http://10.99.205.240:8080/elk3/index/indexUserDetail.do?userId="
-							+ id,
+					"http://10.99.205.240:8080/elk3/user/detailPage.do?userId="
+							+ id + "&url=/user/update",
 					"_blank",
 					"toolbar=no, location=yes, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=700");
 }
@@ -948,26 +986,48 @@ function settingUserDetailLoad() {
 	var userId = $("#user_detail_id").val();
 	$.ajax({
 		type : 'post',
-		url : 'http://10.99.205.240:8080/elk3/index/settingUserDetail.do',
+		url : 'http://10.99.205.240:8080/elk3/user/detail.do',
 		data : {
-			userId : userId
+			userId : userId,
+			url : '/user/update'
 		},
 		dataType : 'json',
 		success : function(data) {
-			$("#user_detail_name").val(data.user.name);
-			$("#user_detail_password").val(data.user.password);
-			$("#user_detail_lockStatus").val(data.user.lockStatus);
+			$("#user_detail_name").val(data.name);
+			$("#user_detail_password").val(data.password);
+			$("#user_detail_lockStatus").val(data.lockStatus);
+		}
+	});
+	$.ajax({
+		type : 'post',
+		url : 'http://10.99.205.240:8080/elk3/role/getRoleByUid.do',
+		data : {
+			uid : userId,
+			url : '/user/update'
+		},
+		dataType : 'json',
+		success : function(data){
 			$("#Role_list_settingUserDetail").html("");
-			$("#Role_all_settingUserDetail").html("");
-			for (var i = 0; i < data.userRole.length; i++) {
+			for (var i = 0; i < data.length; i++) {
 				$("#Role_list_settingUserDetail").append(
-						"<option value=\"" + data.userRole[i].id + "\">"
-								+ data.userRole[i].name + "</option>");
+						"<option value=\"" + data[i].id + "\">"
+								+ data[i].remark + "</option>");
 			}
-			for (var i = 0; i < data.roles.length; i++) {
+		}
+	});
+	$.ajax({
+		type : 'post',
+		url : "http://10.99.205.240:8080/elk3/role/getAll.do",
+		data : {
+			url : '/user/update'
+		},
+		dataType : 'json',
+		success : function(data){
+			$("#Role_all_settingUserDetail").html("");
+			for (var i = 0; i < data.length; i++) {
 				$("#Role_all_settingUserDetail").append(
-						"<option value=\"" + data.roles[i].id + "\">"
-								+ data.roles[i].remark + "</option>");
+						"<option value=\"" + data[i].id + "\">"
+								+ data[i].remark + "</option>");
 			}
 		}
 	});
@@ -1001,7 +1061,8 @@ function Setting_userDetail_submit() {
 			id : id,
 			name : name,
 			password : password,
-			lockStack : lockStack
+			lockStack : lockStack,
+			url : '/user/update'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1015,7 +1076,8 @@ function Setting_userDetail_submit() {
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/urr/deleteByUid.do',
 		data : {
-			userId : id
+			userId : id,
+			url : '/user/update'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1026,7 +1088,8 @@ function Setting_userDetail_submit() {
 					url : 'http://10.99.205.240:8080/elk3/urr/addMore.do',
 					data : {
 						userId : id,
-						roleIds : roleIds
+						roleIds : roleIds,
+						url : '/user/update'
 					},
 					dataType : 'json',
 					success : function(data) {
@@ -1048,8 +1111,8 @@ function Setting_userDetail_submit() {
 function setting_role_detail(id) {
 	window
 			.open(
-					"http://10.99.205.240:8080/elk3/index/indexRoleDetail.do?roleId="
-							+ id,
+					"http://10.99.205.240:8080/elk3/role/detailPage.do?roleId="
+							+ id + "&url=/role/update",
 					"_blank",
 					"toolbar=no, location=yes, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=700");
 }
@@ -1060,17 +1123,31 @@ function settingRoleDetailLoad() {
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/role/getRoleById.do',
 		data : {
-			roleId : roleId
+			roleId : roleId,
+			url : '/role/update'
 		},
 		dataType : 'json',
 		success : function(data) {
-			$("#role_detail_name").val(data.role.name);
-			$("#role_detail_remark").val(data.role.remark);
+			$("#role_detail_name").val(data.name);
+			$("#role_detail_remark").val(data.remark);
+			
+		}
+	});
+	
+	$.ajax({
+		type : 'post',
+		url : 'http://10.99.205.240:8080/elk3/permission/getByRoleId.do',
+		data : {
+			id : roleId,
+			url : '/role/update'
+		},
+		dataType : 'json',
+		success : function(data){
 			$("#permission_list_settingroleDetail").html("");
-			for (var i = 0; i < data.rolePermission.length; i++) {
+			for (var i = 0; i < data.length; i++) {
 				$("#permission_list_settingroleDetail").append(
-						"<option value=\"" + data.rolePermission[i].id + "\">"
-								+ data.rolePermission[i].name + "</option>");
+						"<option value=\"" + data[i].id + "\">"
+								+ data[i].remark + "</option>");
 			}
 		}
 	});
@@ -1078,7 +1155,9 @@ function settingRoleDetailLoad() {
 	$.ajax({
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/permission/getAll.do',
-		data : {},
+		data : {
+			url : '/role/update'
+		},
 		dataType : 'json',
 		success : function(data) {
 			$("#permission_all_settingroleDetail").html("");
@@ -1115,7 +1194,8 @@ function add_user_submit() {
 		data : {
 			name : name,
 			password : password,
-			lockStack : lockStack
+			lockStack : lockStack,
+			url : '/user/add'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1125,7 +1205,8 @@ function add_user_submit() {
 					url : 'http://10.99.205.240:8080/elk3/urr/addMore.do',
 					data : {
 						userId : data.id,
-						roleIds : roleIds
+						roleIds : roleIds,
+						url : '/user/add'
 					},
 					dataType : 'json',
 					success : function(data) {
@@ -1145,7 +1226,7 @@ function add_user_submit() {
 function add_user_detail() {
 	window
 			.open(
-					"http://10.99.205.240:8080/elk3/index/indexAddUser.do?",
+					"http://10.99.205.240:8080/elk3/user/addUserPage.do?url=/user/add",
 					"_blank",
 					"toolbar=no, location=yes, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=700");
 }
@@ -1154,7 +1235,9 @@ function AddUserLoad() {
 	$.ajax({
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/role/getAll.do',
-		data : {},
+		data : {
+			url : '/user/add'
+		},
 		dataType : 'json',
 		success : function(data) {
 			$("#Role_all_addUserDetail").html("");
@@ -1187,7 +1270,8 @@ function delete_user_btn() {
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/urr/deleteByUid.do',
 		data : {
-			userId : uids
+			userId : uids,
+			url : '/user/delete'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1195,7 +1279,8 @@ function delete_user_btn() {
 				type : 'post',
 				url : 'http://10.99.205.240:8080/elk3/unr/rmUNR.do',
 				data : {
-					userIds : uids
+					userIds : uids,
+					url : '/user/delete'
 				},
 				dataType : 'json',
 				success : function(data) {
@@ -1203,7 +1288,8 @@ function delete_user_btn() {
 						type : 'post',
 						url : 'http://10.99.205.240:8080/elk3/user/delete.do',
 						data : {
-							uids : uids
+							uids : uids,
+							url : '/user/delete'
 						},
 						dataType : 'json',
 						success : function(data) {
@@ -1239,6 +1325,7 @@ function Setting_roleDetail_submit() {
 			'id' : id,
 			'name' : name,
 			'remark' : remark,
+			'url' : '/role/update'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1252,7 +1339,8 @@ function Setting_roleDetail_submit() {
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/rpr/delete.do',
 		data : {
-			roleIds : id
+			roleIds : id,
+			url : '/role/update'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1262,7 +1350,8 @@ function Setting_roleDetail_submit() {
 					url : 'http://10.99.205.240:8080/elk3/rpr/add.do',
 					data : {
 						roleId : id,
-						permissionIds : permissionIds
+						permissionIds : permissionIds,
+						url : '/role/update'
 					},
 					dataType : 'json',
 					success : function(data) {
@@ -1295,7 +1384,9 @@ function addRoleDetailLoad() {
 	$.ajax({
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/permission/getAll.do',
-		data : {},
+		data : {
+			url : '/role/add'
+		},
 		dataType : 'json',
 		success : function(data) {
 			$("#permission_all_addroleDetail").html("");
@@ -1322,6 +1413,7 @@ function add_roleDetail_submit() {
 		data : {
 			name : name,
 			remark : remark,
+			url : '/role/add'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1330,7 +1422,8 @@ function add_roleDetail_submit() {
 				url : 'http://10.99.205.240:8080/elk3/rpr/add.do',
 				data : {
 					roleId : data,
-					permissionIds : permissionIds
+					permissionIds : permissionIds,
+					url : '/role/add'
 				},
 				dataType : 'json',
 				success : function(data) {
@@ -1347,7 +1440,7 @@ function add_roleDetail_submit() {
 }
 
 function add_role_detail() {
-	window.open("http://10.99.205.240:8080/elk3/index/indexAddRole.do",
+	window.open("http://10.99.205.240:8080/elk3/role/addRolePage.do?url=/role/add",
 					"_blank",
 					"toolbar=no, location=yes, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=700");
 }
@@ -1361,7 +1454,8 @@ function delete_role_btn() {
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/rpr/delete.do',
 		data : {
-			roleIds : roleIds
+			roleIds : roleIds,
+			url : '/role/delete'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1369,7 +1463,8 @@ function delete_role_btn() {
 				type : 'post',
 				url : 'http://10.99.205.240:8080/elk3/role/delete.do',
 				data : {
-					roleIds : roleIds
+					roleIds : roleIds,
+					url : '/role/delete'
 				},
 				dataType : 'json',
 				success : function(data) {
@@ -1395,7 +1490,8 @@ function delete_permission_btn() {
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/permission/delete.do',
 		data : {
-			permissionIds : permissionIds
+			permissionIds : permissionIds,
+			url : '/permission/delete'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1411,7 +1507,7 @@ function delete_permission_btn() {
 }
 
 function add_permission_detail() {
-	window.open("http://10.99.205.240:8080/elk3/index/indexAddPermission.do",
+	window.open("http://10.99.205.240:8080/elk3/permission/addPermissionPage.do?url=/permission/add",
 					"_blank",
 					"toolbar=no, location=yes, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=700");
 }
@@ -1420,7 +1516,6 @@ function add_permissionDetail_submit() {
 	var name = $("#permission_detail_name").val();
 	var operationUrl = $("#permission_detail_operationUrl").val();
 	var remark = $("#permission_detail_remark").val();
-	var pid = $("#permission_detail_pid").val();
 
 	$.ajax({
 		type : 'post',
@@ -1429,7 +1524,7 @@ function add_permissionDetail_submit() {
 			name : name,
 			operationUrl : operationUrl,
 			remark:remark,
-			pid : pid
+			url : '/permission/detail'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1444,7 +1539,7 @@ function add_permissionDetail_submit() {
 }
 
 function setting_permission_detail(id) {
-	window.open("http://10.99.205.240:8080/elk3/index/indexPermissionDetail.do?id=" + id,
+	window.open("http://10.99.205.240:8080/elk3/permission/permissionDetailPage.do?id=" + id + "&url=/permission/update",
 					"_blank",
 					"toolbar=no, location=yes, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=yes, width=600, height=700");
 }
@@ -1455,13 +1550,13 @@ function settingPermissionDetailLoad(){
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/permission/getById.do',
 		data : {
-			permissionId : permissionId
+			permissionId : permissionId,
+			url : '/permission/update'
 		},
 		dataType : 'json',
 		success : function(data) {
 			$("#permission_detail_name").val(data.name);
 			$("#permission_detail_remark").val(data.remark);
-			$("#permission_detail_pid").val(data.pid);
 			$("#permission_detail_operationUrl").val(data.operationUrl);
 		}
 	});
@@ -1471,7 +1566,6 @@ function setting_permissionDetail_submit(){
 	var id = $("#permission_detail_id").val();
 	var name = $("#permission_detail_name").val();
 	var operationUrl = $("#permission_detail_operationUrl").val();
-	var pid = $("#permission_detail_pid").val();
 	var remark = $("#permission_detail_remark").val();
 	
 	$.ajax({
@@ -1482,7 +1576,7 @@ function setting_permissionDetail_submit(){
 			name : name,
 			operationUrl : operationUrl,
 			remark : remark,
-			pid : pid
+			url : '/permission/update'
 		},
 		dataType : 'json',
 		success : function(data) {
@@ -1500,19 +1594,23 @@ function singleLoad(){
 	var username = $("#username").val();
 	var author = $("#author").val();
 	var index = $("#index").val();
-	$.ajax({
-		type : 'post',
-		url : 'http://10.99.205.240:8080/elk3/index/match.do',
-		data : {
-			url : "/index/edit.do"
-		},
-		dataType : 'json',
-		success : function(data) {
-			if((data || username == author) && index == "kb1"){
-				$("#edit_btn").show();
+	if(username == author){
+		$("#edit_btn").show();
+	}else{
+		$.ajax({
+			type : 'post',
+			url : 'http://10.99.205.240:8080/elk3/setting/match.do',
+			data : {
+				url : "/blog/update"
+			},
+			dataType : 'json',
+			success : function(data) {
+				if(data && index == "kb1"){
+					$("#edit_btn").show();
+				}
 			}
-		}
-	});
+		});
+	}
 }
 
 function showNotification(){
@@ -1534,7 +1632,7 @@ function showNotification(){
 					$("#notification_ul").append("<li><a href=\"#\">"+data[i].msg+"</a></li>");
 				}
 			}
-			$("#notification_ul").append("<li><a href=\"notificationCenter.do\">消息中心</a></li>");
+			$("#notification_ul").append("<li><a href=\"/elk3/notification/centerPage.do\">消息中心</a></li>");
 			$("#notification_num").text("");
 			$("#notification_num").text(temp);
 		}
@@ -1659,5 +1757,9 @@ function notification_downPage_btn_click(){
 	var page = Number($("#pageNow").val()) + 1;
 	$("#from").val(from.toString());
 	$("#pageNow").val(page);
+}
+
+function CloseWebPage(){
+	window.close();
 }
 

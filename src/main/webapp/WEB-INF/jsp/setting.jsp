@@ -64,12 +64,11 @@
 				</div>
 				<input type="hidden" id="username_hidden" value="${username }">
 				<ul class="nav">
-					<li class="active"><a href="<%=basePath%>index/show.do">
-							<i class="ti-panel"></i>
+					<li class="active"><a href="<%=basePath%>index/show.do"> <i
+							class="ti-panel"></i>
 							<p>Search</p>
 					</a></li>
-					<li><a href="<%=basePath%>add/show.do"> <i
-							class="ti-user"></i>
+					<li><a href="<%=basePath%>add/show.do"> <i class="ti-user"></i>
 							<p>Add Source</p>
 					</a></li>
 					<li><a href="<%=basePath%>index/detail.do"> <i
@@ -95,11 +94,13 @@
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="http://10.99.205.240:8080/elk3/login/logout.do" class="dropdown-toggle"> <i class="ti-panel"></i>
+							<li><a href="http://10.99.205.240:8080/elk3/login/logout.do"
+								class="dropdown-toggle"> <i class="ti-panel"></i>
 									<p>Stats</p>
 							</a></li>
-							<li class="dropdown" id="notification_li"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"> <i class="ti-bell"></i>
+							<li class="dropdown" id="notification_li"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"> <i
+									class="ti-bell"></i>
 									<p class="notification" id="notification_num"></p>
 									<p>Notifications</p> <b class="caret"></b>
 							</a>
@@ -123,10 +124,10 @@
 
 			<div class="content">
 				<div class="container-fluid">
-					
+
 					<div class="row">
 						<div class="col-md-12">
-							<div class="card" style="height:1200px;">
+							<div class="card" style="height: 1700px;">
 								<div class="header">
 									<h4 class="title">Setting</h4>
 									<p class="category">set witeList</p>
@@ -139,111 +140,168 @@
 										<span class="category">ALL</span>
 									</div>
 									<div class="col-md-3">
-										<select size="10" style="width:150px" id="index_list_setting">
+										<select size="10" style="width: 150px" id="index_list_setting">
 										</select>
 									</div>
 									<div class="col-md-3">
-										<button type="button" class="btn btn-info btn-fill btn-wd" onclick="whiteListAdd();">
+										<button type="button" class="btn btn-info btn-fill btn-wd"
+											onclick="whiteListAdd();">
 											<span>ADD</span>
 										</button>
-										<button type="button" class="btn btn-info btn-fill btn-wd" onclick="whiteListDel();">
+										<button type="button" class="btn btn-info btn-fill btn-wd"
+											onclick="whiteListDel();">
 											<span>DELETE</span>
 										</button>
-										<button type="button" class="btn btn-info btn-fill btn-wd" onclick="settingWhiteListSub();">submit</button>
+										<button type="button" class="btn btn-info btn-fill btn-wd"
+											onclick="settingWhiteListSub();">submit</button>
 										<button type="button" class="btn btn-info btn-fill btn-wd">back</button>
 									</div>
 									<div class="col-md-3">
-										<select size="10" style="width:150px" id="index_all_setting">
+										<select size="10" style="width: 150px" id="index_all_setting">
 										</select>
 									</div>
 									<div class="col-md-12">
 										<hr>
 									</div>
-								<div class="col-md-12">
-									<p class="category">User Setting</p>
-									<div class="col-md-3">
-										<button type="button" onclick="add_user_detail();">
-											<span>ADD</span>
-										</button>
-									</div>
-									<div class="col-md-3">
-										<button type="button" onclick="delete_user_btn();">
-											<span>DELETE</span>
-										</button>
+									<div class="col-md-12">
+										<p class="category">User Setting</p>
+										<div class="col-md-3">
+											<button type="button" onclick="add_user_detail();">
+												<span>ADD</span>
+											</button>
+										</div>
+										<div class="col-md-3">
+											<button type="button" onclick="delete_user_btn();">
+												<span>DELETE</span>
+											</button>
+										</div>
+										<div class="col-md-12">
+											<table class="table table-striped">
+												<thead>
+													<tr>
+														<td>id</td>
+														<td>name</td>
+														<td>Lock</td>
+													</tr>
+												</thead>
+												<tbody id="setting_user_tbody">
+												</tbody>
+											</table>
+										</div>
+										<div class="col-md-3" id="user_prev_div">
+											<button id="btn_user_prev" onclick="setting_prev('user');"
+												style="display: none;">上一页</button>
+										</div>
+										<div class="col-md-3" id="user_page_div">
+											<input type="text" value="" id="user_pageNow"
+												onkeypress="pageNow_keypress(event);"
+												style="width: 20px; display: none;"><span
+												id="user_total"></span>
+										</div>
+										<div class="col-md-3" id="user_next_div">
+											<button id="btn_user_next" onclick="setting_next('user');"
+												style="display: none;">下一页</button>
+										</div>
+										<input id="user_from_hidden" type="hidden" value="0">
+										<input id="user_pageNow_hidden" type="hidden" value="1">
+										<input id="user_total_hidden" type="hidden" value="">
 									</div>
 									<div class="col-md-12">
-										<table class="table table-striped">
-											<thead>
-												<tr>
-													<td>id</td>
-													<td>name</td>
-													<td>Lock</td>
-												</tr>
-											</thead>
-											<tbody id="setting_user_tbody">
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="col-md-12">
 										<hr>
 									</div>
-								<div class="col-md-12">
-									<p class="category">Role Setting</p>
-									<div class="col-md-3">
-										<button type="button" onclick="add_role_detail();">
-											<span>ADD</span>
-										</button>
-									</div>
-									<div class="col-md-3">
-										<button type="button" onclick="delete_role_btn();">
-											<span>DELETE</span>
-										</button>
+									<div class="col-md-12">
+										<p class="category">Role Setting</p>
+										<div class="col-md-3">
+											<button type="button" onclick="add_role_detail();">
+												<span>ADD</span>
+											</button>
+										</div>
+										<div class="col-md-3">
+											<button type="button" onclick="delete_role_btn();">
+												<span>DELETE</span>
+											</button>
+										</div>
+										<div class="col-md-12">
+											<table class="table table-striped">
+												<thead>
+													<tr>
+														<td>id</td>
+														<td>name</td>
+														<td>mark</td>
+													</tr>
+												</thead>
+												<tbody id="setting_role_tbody">
+												</tbody>
+											</table>
+										</div>
+										<div class="col-md-3">
+											<button id="btn_role_prev" onclick="setting_prev('role');"
+												style="display: none;">上一页</button>
+										</div>
+										<div class="col-md-3">
+											<input type="text" value="" id="role_pageNow"
+												onkeypress="pageNow_keypress(event);"
+												style="width: 20px; display: none;"><span
+												id="role_total"></span>
+										</div>
+										<div class="col-md-3">
+											<button id="btn_role_next" onclick="setting_next('role');"
+												style="display: none;">下一页</button>
+										</div>
+										<input id="role_from_hidden" type="hidden" value="0">
+										<input id="role_pageNow_hidden" type="hidden" value="1">
+										<input id="role_total_hidden" type="hidden" value="">
 									</div>
 									<div class="col-md-12">
-										<table class="table table-striped">
-											<thead>
-												<tr>
-													<td>id</td>
-													<td>name</td>
-													<td>mark</td>
-												</tr>
-											</thead>
-											<tbody id="setting_role_tbody">
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<p class="category">Permission Setting</p>
-									<div class="col-md-3">
-										<button type="button" onclick="add_permission_detail();">
-											<span>ADD</span>
-										</button>
-									</div>
-									<div class="col-md-3">
-										<button type="button" onclick="delete_permission_btn();">
-											<span>DELETE</span>
-										</button>
+										<hr>
 									</div>
 									<div class="col-md-12">
-										<table class="table table-striped">
-											<thead>
-												<tr>
-													<td>id</td>
-													<td>name</td>
-													<td>mark</td>
-												</tr>
-											</thead>
-											<tbody id="setting_permission_tbody">
-											</tbody>
-										</table>
+										<p class="category">Permission Setting</p>
+										<div class="col-md-3">
+											<button type="button" onclick="add_permission_detail();">
+												<span>ADD</span>
+											</button>
+										</div>
+										<div class="col-md-3">
+											<button type="button" onclick="delete_permission_btn();">
+												<span>DELETE</span>
+											</button>
+										</div>
+										<div class="col-md-12">
+											<table class="table table-striped">
+												<thead>
+													<tr>
+														<td>id</td>
+														<td>name</td>
+														<td>mark</td>
+													</tr>
+												</thead>
+												<tbody id="setting_permission_tbody">
+												</tbody>
+											</table>
+										</div>
+										<div class="col-md-3">
+											<button id="btn_permission_prev"
+												onclick="setting_prev('permission');" style="display: none;">上一页</button>
+										</div>
+										<div class="col-md-3">
+											<input type="text" value="" id="permission_pageNow"
+												onkeypress="pageNow_keypress(event);"
+												style="width: 20px; display: none;"><span
+												id="permission_total"></span>
+										</div>
+										<div class="col-md-3">
+											<button id="btn_permission_next"
+												onclick="setting_next('permission');">下一页</button>
+										</div>
+										<input id="permission_from_hidden" type="hidden" value="0">
+										<input id="permission_pageNow_hidden" type="hidden" value="1">
+										<input id="permission_total_hidden" type="hidden" value="">
 									</div>
 								</div>
-								</div>
-								
-								</div>
+
 							</div>
+						</div>
 					</div>
 					<div class="row" id="show_blog"></div>
 				</div>
@@ -260,9 +318,8 @@
 							<li><a href="#/license"> Licenses </a></li>
 						</ul>
 					</nav>
-					<div class="copyright pull-right">
-						Copyright &copy; 2017.Company name All rights reserved.
-					</div>
+					<div class="copyright pull-right">Copyright &copy;
+						2017.Company name All rights reserved.</div>
 				</div>
 			</footer>
 

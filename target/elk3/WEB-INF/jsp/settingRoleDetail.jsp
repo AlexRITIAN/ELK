@@ -82,7 +82,7 @@
 								</div>
 								<div>
 									<button onclick="Setting_roleDetail_submit();">Submit</button>
-									<button onclick="">back</button>
+									<button onclick="CloseWebPage();">back</button>
 								</div>
 							</div>
 </body>

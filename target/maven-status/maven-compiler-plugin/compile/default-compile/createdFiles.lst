@@ -1,12 +1,10 @@
 com\lenovo\elk3\service\ISearchService.class
-com\lenovo\elk3\service\IDeleteService.class
 com\lenovo\elk3\utils\ParseHexUtil.class
 com\lenovo\elk3\service\UserServiceImpl.class
 com\lenovo\elk3\service\IRolePermissionRelationService.class
 com\lenovo\elk3\controllers\UserController.class
 com\lenovo\elk3\dao\LoginDao.class
 com\lenovo\elk3\service\IUserNotificationRelationService.class
-com\lenovo\elk3\service\AddServiceImpl.class
 com\lenovo\elk3\utils\ConversionUtil.class
 com\lenovo\elk3\controllers\SearchController.class
 com\lenovo\elk3\controllers\FileController.class
@@ -24,11 +22,13 @@ com\lenovo\elk3\service\RoleServiceImpl.class
 com\lenovo\elk3\service\NotificationServiceImpl.class
 com\lenovo\elk3\service\UserNotificationRelationServiceImpl.class
 com\lenovo\elk3\dao\UserDao.class
+com\lenovo\elk3\service\BlogServiceImpl.class
+com\lenovo\elk3\utils\MatchUtil.class
 com\lenovo\elk3\dao\UserRoleRelationDao.class
 com\lenovo\elk3\utils\HtmlParseUtil.class
 com\lenovo\elk3\beans\RoleBean.class
+com\lenovo\elk3\controllers\BlogController.class
 com\lenovo\elk3\beans\UserBean.class
-com\lenovo\elk3\controllers\AddController.class
 com\lenovo\elk3\controllers\PermissionController.class
 com\lenovo\elk3\service\RolePermissionRelationServiceImpl.class
 com\lenovo\elk3\service\ILoginService.class
@@ -38,7 +38,6 @@ com\lenovo\elk3\service\INotificationService.class
 com\lenovo\elk3\utils\HttpClientUtil.class
 com\lenovo\elk3\controllers\IndexController.class
 com\lenovo\elk3\beans\BlogBean.class
-com\lenovo\elk3\service\IAddService.class
 com\lenovo\elk3\service\PermissionServiceImpl.class
 com\lenovo\elk3\beans\NotificationBean.class
 com\lenovo\elk3\controllers\NotificationController.class
@@ -46,7 +45,6 @@ com\lenovo\elk3\service\IndexService.class
 com\lenovo\elk3\dao\NotificationDao.class
 com\lenovo\elk3\service\UserRoleRelationServiceImpl.class
 com\lenovo\elk3\service\IUserService.class
-com\lenovo\elk3\controllers\DeleteController.class
 com\lenovo\elk3\dao\UserNotificationRelationDao.class
 com\lenovo\elk3\beans\PermissionBean.class
 com\lenovo\elk3\utils\ParseJSON.class
@@ -55,7 +53,9 @@ com\lenovo\elk3\beans\RolePermissionRelationBean.class
 com\lenovo\elk3\controllers\RolePermissionRelationController.class
 com\lenovo\elk3\controllers\UserNotificationRelationController.class
 com\lenovo\elk3\service\IndexServiceImpl.class
+com\lenovo\elk3\interceptor\HandlerInterceptor.class
 com\lenovo\elk3\utils\ElasticsearchUtil.class
-com\lenovo\elk3\service\DeleteServiceImpl.class
+com\lenovo\elk3\controllers\SettingController.class
+com\lenovo\elk3\service\IBlogService.class
 com\lenovo\elk3\beans\UserRoleRelationBean.class
 com\lenovo\elk3\controllers\LoginController.class

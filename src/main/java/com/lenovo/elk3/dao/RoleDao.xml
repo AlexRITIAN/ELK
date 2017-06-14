@@ -12,12 +12,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from tbl_role where id = #{id}
 	</select>
 	
-	<select id="selectPermissionByRoleId" resultType="PermissionBean">
-		select p.id,p.name,p.operationUrl,p.pid from tbl_role_permission_relation as rpr join tbl_permission as p on rpr.permission_id = p.id where rpr.role_id = #{roleId}
-	</select>
 	
 	<select id="selectAll" resultType="RoleBean">
 		select * from tbl_role
+	</select>
+	
+	<select id="selectAllLimit" resultType="RoleBean">
+		select * from tbl_role limit #{from},5
+	</select>
+	
+	<select id="getRoleByUid" resultType="RoleBean">
+		select r.id,r.name,r.remark,r.code,r.createTime,r.editTime from tbl_role as r join tbl_user_role_relation as urr on r.id = urr.role_id where urr.user_id = #{uid} 
 	</select>
 	
 	<insert id="insert" parameterType="RoleBean" useGeneratedKeys="true" keyProperty="id">

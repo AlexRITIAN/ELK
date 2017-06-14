@@ -102,5 +102,15 @@ public class NotificationController {
 			logger.error(e.getMessage(),e);
 		}
 	}
+	
+	@RequestMapping("/notification/centerPage.do")
+	public String notificationCenter(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute("username") != null){
+			return "notificationCenter";
+		}
+		return "login";
+		
+	}
 
 }

@@ -8,6 +8,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from tbl_permission
 	</select>
 	
+	<select id="selectAllLimit" resultType="PermissionBean">
+		select * from tbl_permission limit #{from},5
+	</select>
+	
+	<select id="getByRoleId" resultType="PermissionBean">
+		select p.id,p.name,p.remark,p.code,p.createTime,p.editTime,p.moduleUrl,p.operationUrl,p.orderNo from tbl_permission as p join tbl_role_permission_relation as rpr on p.id = rpr.permission_id where rpr.role_id = #{roleId}
+	</select>
+	
+	<select id="selectPermissionByUserId" resultType="PermissionBean"
+		parameterType="int">
+		select p.name,p.operationUrl,p.id from
+		tbl_user_role_relation ur join tbl_role_permission_relation rp join
+		tbl_permission p on ur.role_id = rp.role_id and rp.permission_id =
+		p.id where ur.user_id = #{userId};
+	</select>
+	
+	<select id="selectPermissionByUrl" resultType="PermissionBean"
+		parameterType="String">
+		select * from tbl_permission where operationUrl=#{url}
+	</select>
+	
+	
 	<delete id="delete" parameterType="java.util.List">
 		delete from tbl_permission where id in 
 		<foreach collection="list" open="(" separator="," close=")" item="item" index="index">
@@ -16,8 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<insert id="insert" parameterType="PermissionBean">
-		insert into tbl_permission(name,operationUrl,createTime,pid,remark) 
-			values(#{name},#{operationUrl},#{createTime},#{pid},#{remark})
+		insert into tbl_permission(name,operationUrl,createTime,remark) 
+			values(#{name},#{operationUrl},#{createTime},#{remark})
 	</insert>
 	
 	<select id="selectByid" resultType="PermissionBean">
@@ -25,6 +47,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="update" parameterType="PermissionBean">
-		update tbl_permission set name = #{name},operationUrl = #{operationUrl},pid = #{pid},remark = #{remark} where id = #{id}
+		update tbl_permission set name = #{name},operationUrl = #{operationUrl},remark = #{remark} where id = #{id}
 	</update>
 </mapper>

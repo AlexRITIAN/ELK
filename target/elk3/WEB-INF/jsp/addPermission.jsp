@@ -56,12 +56,11 @@
 									name:<input type="text" id="permission_detail_name" value=""><br>
 									operationUrl:<input type="text" id="permission_detail_operationUrl" value=""><br>
 									remark:<input type="text" id="permission_detail_remark" value=""><br>
-									pid:<input type="text" id="permission_detail_pid" value="1"><br>
 																		
 								</div>
 								<div>
 									<button onclick="add_permissionDetail_submit();">Submit</button>
-									<button onclick="">back</button>
+									<button onclick="CloseWebPage();">back</button>
 								</div>
 							</div>
 </body>

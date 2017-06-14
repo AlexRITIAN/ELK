@@ -14,9 +14,16 @@ public interface PermissionDao {
 	
 	PermissionBean selectByid(int id);
 	
-	List<PermissionBean> selectByPid(int pid);
 	
 	List<PermissionBean> selectAll();
+	
+	List<PermissionBean> selectAllLimit(int from);
+	
+	List<PermissionBean> getByRoleId(int roleId);
+	
+	List<PermissionBean> selectPermissionByUserId(int userId);
+	
+	PermissionBean selectPermissionByUrl(String url);
 	
 	
 }

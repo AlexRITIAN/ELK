@@ -1,8 +1,11 @@
 package com.lenovo.elk3.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lenovo.elk3.beans.PermissionBean;
 import com.lenovo.elk3.beans.UserBean;
 import com.lenovo.elk3.dao.LoginDao;
 import com.lenovo.elk3.dao.UserDao;
@@ -28,6 +31,11 @@ public class LoginServiceImpl implements ILoginService {
 			flag = userBean.getId();
 		}
 		return flag;
+	}
+
+	@Override
+	public List<PermissionBean> getPermission(int userID) {
+		return dao.selectPermission(userID);
 	}
 
 }

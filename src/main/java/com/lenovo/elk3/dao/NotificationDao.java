@@ -16,7 +16,8 @@ public interface NotificationDao {
 	
 	List<NotificationBean> selectByUserIdNolimit(int user_id);
 	
-	List<NotificationBean> selectByUserIdAll(int user_id);
+	int selectByUserIdAll(int user_id);
+	
 	NotificationBean selectById(int id);
 	
 	int updateDelmark(NotificationBean notification);

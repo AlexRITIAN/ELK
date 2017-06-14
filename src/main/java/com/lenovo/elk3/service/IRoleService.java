@@ -13,12 +13,16 @@ public interface IRoleService {
 	
 	int updateRole(RoleBean role);
 	
-	List<PermissionBean> getPermissionByRoleId(int roleId);
+//	List<PermissionBean> getPermissionByRoleId(int roleId);
 	
 	List<RoleBean> getAll() throws Exception;
 	
 	int add(RoleBean role) throws Exception;
 	
 	int delete(String roleIds) throws Exception;
+	
+	List<RoleBean> getRoleByUid(int uid) throws Exception;
+	
+	List<RoleBean> getAllLimit(int from);
 	
 }

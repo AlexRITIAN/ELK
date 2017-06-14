@@ -2,7 +2,6 @@ package com.lenovo.elk3.dao;
 
 import java.util.List;
 
-import com.lenovo.elk3.beans.PermissionBean;
 import com.lenovo.elk3.beans.RoleBean;
 
 public interface RoleDao {
@@ -11,11 +10,15 @@ public interface RoleDao {
 	
 	int update(RoleBean role);
 	
-	List<PermissionBean> selectPermissionByRoleId(int roleId);
+//	List<PermissionBean> selectPermissionByRoleId(int roleId);
 	
 	List<RoleBean> selectAll();
 	
 	int insert(RoleBean role);
 	
 	int delete(List<RoleBean> list);
+	
+	List<RoleBean> getRoleByUid(int uid);
+	
+	List<RoleBean> selectAllLimit(int from);
 }

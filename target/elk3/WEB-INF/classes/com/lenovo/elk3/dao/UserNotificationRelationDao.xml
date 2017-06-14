@@ -34,23 +34,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		tbl_notification where user_id = #{user_id}
 	</select>
 
-	<select id="selectUserIdByPermissionId" parameterType="java.util.List" resultType="UserBean">
+	<select id="selectUserIdByPermissionId" resultType="UserBean">
 		select u.id,u.name from tbl_user as u join tbl_user_role_relation
 		as urr join tbl_role_permission_relation as rpr join tbl_permission as
 		p on p.id = rpr.permission_id and rpr.role_id = urr.role_id and
-		urr.user_id = u.id where p.id in
-		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
-			#{item.id}
-		</foreach>
+		urr.user_id = u.id where p.id = #{permissionID}
 	</select>
 	
 	<select id="selectPermissionidByoperationUrl" resultType="PermissionBean">
 		select * from tbl_permission where operationUrl = #{operationUrl}
 	</select>
 	
-	<select id="selectPermissionPidByid" resultType="PermissionBean">
-		select * from tbl_permission where id = #{id}
-	</select>
 	
 	<update id="updateStatus" parameterType="UserNotificationRelationBean">
 		update tbl_user_notification_relation set status = #{status} where user_id = #{user_id} and notification_id = #{notification_id}

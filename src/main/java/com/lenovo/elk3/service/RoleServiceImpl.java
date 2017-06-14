@@ -38,10 +38,10 @@ public class RoleServiceImpl implements IRoleService {
 		return roleDao.update(role);
 	}
 
-	@Override
+	/*@Override
 	public List<PermissionBean> getPermissionByRoleId(int roleId) {
 		return roleDao.selectPermissionByRoleId(roleId);
-	}
+	}*/
 
 	@Override
 	public List<RoleBean> getAll() throws Exception {
@@ -64,6 +64,16 @@ public class RoleServiceImpl implements IRoleService {
 			list.add(role);
 		}
 		return roleDao.delete(list);
+	}
+
+	@Override
+	public List<RoleBean> getRoleByUid(int uid) throws Exception {
+		return roleDao.getRoleByUid(uid);
+	}
+
+	@Override
+	public List<RoleBean> getAllLimit(int from) {
+		return roleDao.selectAllLimit(from);
 	}
 
 }

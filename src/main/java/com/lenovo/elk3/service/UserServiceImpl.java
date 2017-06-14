@@ -14,11 +14,14 @@ import javax.crypto.NoSuchPaddingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lenovo.elk3.beans.RoleBean;
 import com.lenovo.elk3.beans.UserBean;
 import com.lenovo.elk3.dao.UserDao;
 import com.lenovo.elk3.utils.AESUtil;
 import com.lenovo.elk3.utils.ParseHexUtil;
+import com.lenovo.elk3.utils.ParseJSON;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @Service(value = "UserService")
@@ -43,9 +46,8 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public JSONObject getUserById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserBean getUserById(int id) {
+		return userDao.selectUserById(id);
 	}
 
 	@Override
@@ -73,5 +75,39 @@ public class UserServiceImpl implements IUserService {
 		user.setEditTime(dateFormat.format(new Date()));
 		return userDao.update(user);
 	}
+
+
+	@Override
+	public JSONArray settingUserInit() throws Exception {
+		StringBuffer buffer = new StringBuffer();
+		List<UserBean> selectAllUser = userDao.selectAllUser();
+		buffer.append("[");
+		for (UserBean userBean : selectAllUser) {
+			buffer.append(ParseJSON.getJSON(userBean).toString());
+			buffer.append(",");
+		}
+		buffer.append("]");
+		return ParseJSON.getJSONArray(buffer.toString());
+	}
+
+
+	@Override
+	public List<UserBean> getAllLimit(int from) throws Exception {
+		return userDao.selectAllLimit(from);
+	}
+
+
+	/*@Override
+	public JSONArray getRoleByUserId(int userId) {
+		List<RoleBean> roles = userDao.selectRoleByUserId(userId);
+		return ParseJSON.getJSONArray(roles);
+	}*/
+
+
+	/*@Override
+	public JSONArray getRoleInit() {
+		List<RoleBean> roles = userDao.selectAllRole();
+		return ParseJSON.getJSONArray(roles);
+	}*/
 
 }

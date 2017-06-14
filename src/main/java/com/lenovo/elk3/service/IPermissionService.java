@@ -18,4 +18,8 @@ public interface IPermissionService {
 	JSONObject getById(int id) throws Exception;
 	
 	int update(PermissionBean permission) throws Exception;
+	
+	List<PermissionBean> getByRoleId(int roleId);
+	
+	List<PermissionBean> getAllLimit(int from);
 }

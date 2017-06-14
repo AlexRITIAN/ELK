@@ -2,6 +2,7 @@ package com.lenovo.elk3.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +15,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lenovo.elk3.beans.PermissionBean;
 import com.lenovo.elk3.beans.UserBean;
 import com.lenovo.elk3.service.ILoginService;
+import com.lenovo.elk3.utils.ParseJSON;
 
 
 
@@ -41,8 +44,10 @@ public class LoginController {
 			id = loginservice.match(user);
 			if (id != 0) {
 				HttpSession session = request.getSession();
+				List<PermissionBean> permission = loginservice.getPermission(id);
 				session.setAttribute("username", user.getName());
 				session.setAttribute("userId", id);
+				session.setAttribute("permission", permission);
 			}
 			out = response.getWriter();
 			out.println(id);
@@ -65,5 +70,21 @@ public class LoginController {
 			logger.error(e.getMessage(),e);
 		}
 		return "index";
+	}
+	
+	@RequestMapping("login/getUsername.do")
+	public void getUsername(HttpServletRequest request,HttpServletResponse response){
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+			HttpSession session = request.getSession(false);
+			if(session != null && session.getAttribute("username") != null){
+				out.print("{\"username\":\"" + session.getAttribute("username") + "\"}");
+			}else{
+				out.print("{\"username\":null}");
+			}
+		} catch (IOException e) {
+			logger.error(e.getMessage(),e);
+		}
 	}
 }

@@ -66,4 +66,16 @@ public class PermissionServiceImpl implements IPermissionService {
 		return perDao.update(permission);
 	}
 
+
+	@Override
+	public List<PermissionBean> getByRoleId(int roleId) {
+		return perDao.getByRoleId(roleId);
+	}
+
+
+	@Override
+	public List<PermissionBean> getAllLimit(int from) {
+		return perDao.selectAllLimit(from);
+	}
+
 }

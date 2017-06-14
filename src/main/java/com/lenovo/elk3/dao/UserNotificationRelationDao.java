@@ -16,11 +16,10 @@ public interface UserNotificationRelationDao {
 	
 	int deleteByUserID(List<UserNotificationRelationBean> list);
 	
-	List<UserBean> selectUserIdByPermissionId(List<PermissionBean> list);
+	List<UserBean> selectUserIdByPermissionId(int permissionID);
 	
 	PermissionBean selectPermissionidByoperationUrl(String operationUrl);
 	
-	PermissionBean selectPermissionPidByid(int id);
 	
 	int updateStatus(UserNotificationRelationBean urn);
 }
