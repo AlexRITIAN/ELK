@@ -735,7 +735,8 @@ function settingLoad() {
 							type : 'post',
 							url : 'http://10.99.205.240:8080/elk3/permission/getAllLimit.do',
 							data : {
-								from : 0
+								from : 0,
+								url : '/index/setting'
 							},
 							dataType : 'json',
 							success : function(data){
