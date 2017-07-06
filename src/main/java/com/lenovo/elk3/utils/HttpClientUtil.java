@@ -56,7 +56,6 @@ public class HttpClientUtil {
 		CloseableHttpResponse response = httpClient.execute(post);
 		HttpEntity entity = response.getEntity();
 		String entityStr = EntityUtils.toString(entity, "UTF-8");
-		logger.info(entityStr);
 		httpClient.close();
 		return entityStr;
 	}
@@ -67,7 +66,6 @@ public class HttpClientUtil {
 		CloseableHttpResponse execute = httpClient.execute(delete);
 		HttpEntity entity = execute.getEntity();
 		String entityStr = EntityUtils.toString(entity);
-		logger.info(entityStr);
 		httpClient.close();
 		return entityStr;
 	}

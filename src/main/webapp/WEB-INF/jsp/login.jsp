@@ -28,8 +28,10 @@
 		var options = {
 			success : function(data) {
 				var from = $("#from").val();
-				if(data != 0){
+				if(data > 0){
 					window.location.href="http://10.99.205.240:8080/elk3/" + from;
+				}else if(data == -1){
+					alert("用户被锁定!");
 				}else{
 					alert("用户名或密码错误!");
 				}

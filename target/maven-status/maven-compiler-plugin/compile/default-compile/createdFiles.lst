@@ -17,6 +17,7 @@ com\lenovo\elk3\controllers\RoleController.class
 com\lenovo\elk3\dao\PermissionDao.class
 com\lenovo\elk3\utils\LoadConfig.class
 com\lenovo\elk3\service\IRoleService.class
+com\lenovo\elk3\service\ISettingService.class
 com\lenovo\elk3\service\LoginServiceImpl.class
 com\lenovo\elk3\service\RoleServiceImpl.class
 com\lenovo\elk3\service\NotificationServiceImpl.class
@@ -54,6 +55,7 @@ com\lenovo\elk3\controllers\RolePermissionRelationController.class
 com\lenovo\elk3\controllers\UserNotificationRelationController.class
 com\lenovo\elk3\service\IndexServiceImpl.class
 com\lenovo\elk3\interceptor\HandlerInterceptor.class
+com\lenovo\elk3\service\SettingServiceImpl.class
 com\lenovo\elk3\utils\ElasticsearchUtil.class
 com\lenovo\elk3\controllers\SettingController.class
 com\lenovo\elk3\service\IBlogService.class

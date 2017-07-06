@@ -15,6 +15,7 @@ D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\utils\MatchUtil.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\service\PermissionServiceImpl.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\service\RoleServiceImpl.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\service\IndexService.java
+D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\service\SettingServiceImpl.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\interceptor\HandlerInterceptor.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\utils\AESUtil.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\beans\RoleBean.java
@@ -37,6 +38,7 @@ D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\service\SearchServiceImpl
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\service\UserNotificationRelationServiceImpl.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\utils\ConversionUtil.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\utils\HtmlParseUtil.java
+D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\service\ISettingService.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\dao\UserDao.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\service\IUserRoleRelationService.java
 D:\eclipseWorkSpace\elk3\src\main\java\com\lenovo\elk3\controllers\FileController.java

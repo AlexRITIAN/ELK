@@ -60,7 +60,7 @@
 			<div class="sidebar-wrapper">
 				<div class="logo" id="logo">
 					<a href="<%=basePath%>index/show.do" class="simple-text">
-						Creative Tim </a>
+						${username } </a>
 				</div>
 				<input type="hidden" id="username_hidden" value="${username }">
 				<ul class="nav">
@@ -68,10 +68,10 @@
 							class="ti-panel"></i>
 							<p>Search</p>
 					</a></li>
-					<li><a href="<%=basePath%>add/show.do"> <i class="ti-user"></i>
+					<li><a href="<%=basePath%>blog/show.do?url=/blog/add"> <i class="ti-user"></i>
 							<p>Add Source</p>
 					</a></li>
-					<li><a href="<%=basePath%>index/detail.do"> <i
+					<li><a href="<%=basePath%>blog/detail.do?url=/blog/update"> <i
 							class="ti-view-list-alt"></i>
 							<p>Source</p>
 					</a></li>

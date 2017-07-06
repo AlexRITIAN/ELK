@@ -2,6 +2,7 @@ package com.lenovo.elk3.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -104,10 +105,12 @@ public class NotificationController {
 	}
 	
 	@RequestMapping("/notification/centerPage.do")
-	public String notificationCenter(HttpServletRequest request){
+	public String notificationCenter(HttpServletRequest request,Map<String,String> map){
 		HttpSession session = request.getSession(false);
 		if(session != null && session.getAttribute("username") != null){
 			return "notificationCenter";
+		}else{
+			map.put("username",(String)session.getAttribute("username"));
 		}
 		return "login";
 		

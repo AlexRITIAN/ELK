@@ -30,6 +30,7 @@ public class HandlerInterceptor implements org.springframework.web.servlet.Handl
 			return false;
 		}else{
 			String url = (String) request.getParameter("url");
+			logger.info("=======>url: " + url + "<==========");
 			@SuppressWarnings("unchecked")
 			List<PermissionBean> permissionList = (List<PermissionBean>) session.getAttribute("permission");
 			if(MatchUtil.matchPermission(url, permissionList)){

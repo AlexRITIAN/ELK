@@ -71,7 +71,7 @@ function mutilsearch(from) {
 							$("#show_blog")
 									.append(
 											"<div class=\"col-md-12\"><div class=\"card\">"
-													+ "<div class=\"header\"><a href=\"http://10.99.205.240:8080/elk3/blog/single.do?index="
+													+ "<div class=\"header\"><a href=\"http://10.99.205.240:8080/elk3/b/single.do?index="
 													+ data.blogs[i]._index
 													+ "&type="
 													+ data.blogs[i]._type
@@ -144,7 +144,7 @@ function mutilsearch(from) {
 							$("#show_blog")
 									.append(
 											"<div class=\"col-md-12\"><div class=\"card\">"
-													+ "<div class=\"header\"><a href=\"http://10.99.205.240:8080/elk3/blog/single.do?index="
+													+ "<div class=\"header\"><a href=\"http://10.99.205.240:8080/elk3/b/single.do?index="
 													+ data.blogs[i]._index
 													+ "&type="
 													+ data.blogs[i]._type
@@ -294,7 +294,7 @@ function searchLoad() {
 		success : function(data){
 			$("#logo").html("");
 			if(data.username != null && data.username !="" && data.username != undefined && data.username != "null"){
-				$("#logo").append(data.username);
+				$("#logo").append("<a href=\"http://10.99.205.240:8080/elk3/index/show.do\" class=\"simple-text\">" + data.username + "</a>");
 				showNotification();
 			}else{
 				$("#logo").append("<a href=\"http://10.99.205.240:8080/elk3/login/login.do\" class=\"simple-text\">login</a>")
@@ -336,7 +336,7 @@ function detailLoad(from) {
 												+ "','"
 												+ data.blogs[i]._id
 												+ "');\">DELETE</a></td>"
-												+ "<td><a href=\"http://10.99.205.240:8080/elk3/blog/single.do?index="
+												+ "<td><a href=\"http://10.99.205.240:8080/elk3/b/single.do?index="
 												+ data.blogs[i]._index
 												+ "&type="
 												+ data.blogs[i]._type
@@ -476,7 +476,7 @@ function editButton() {
 			+ $("#type").val()
 			+ "&id="
 			+ $("#id").val()
-			+ "&url=/bolg/update";
+			+ "&url=/blog/update";
 }
 
 function add_submit() {
@@ -544,8 +544,6 @@ function initchartist(labels, series) {
 
 function settingLoad() {
 	var username = $("#username_hidden").val();
-	$("#logo").html("");
-	$("#logo").html(username);
 	$.ajax({
 		type : 'post',
 		url : 'http://10.99.205.240:8080/elk3/search/index.do',
@@ -1049,7 +1047,7 @@ function Setting_userDetail_submit() {
 	var id = $("#user_detail_id").val();
 	var name = $("#user_detail_name").val();
 	var password = $("#user_detail_password").val();
-	var lockStack = $("#user_detail_lockStatus").val();
+	var lockStatus = $("#user_detail_lockStatus").val();
 	var roleIds = $("#Role_list_settingUserDetail option").map(function() {
 		return $(this).val();
 	}).get().join(",");
@@ -1062,7 +1060,7 @@ function Setting_userDetail_submit() {
 			id : id,
 			name : name,
 			password : password,
-			lockStack : lockStack,
+			lockStatus : lockStatus,
 			url : '/user/update'
 		},
 		dataType : 'json',

@@ -78,7 +78,7 @@ public class BlogController {
 		return "add_blog";
 	}
 	
-	@RequestMapping("/blog/single.do")
+	@RequestMapping("/b/single.do")
 	public String single(Map<String, JSONObject> map, String index, String type, String id,
 			HttpServletRequest request) {
 		JSONObject json = null;
@@ -109,5 +109,12 @@ public class BlogController {
 			logger.error(e.getMessage(), e);
 		}
 		return "edit";
+	}
+	
+	@RequestMapping("/blog/detail.do")
+	public String detail(Map<String, String> map,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		map.put("username",(String)session.getAttribute("username"));
+		return "detail";
 	}
 }

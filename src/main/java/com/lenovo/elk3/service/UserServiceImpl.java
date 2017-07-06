@@ -46,8 +46,11 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public UserBean getUserById(int id) {
-		return userDao.selectUserById(id);
+	public UserBean getUserById(int id) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+		UserBean user = userDao.selectUserById(id);
+		AESUtil aes = new AESUtil();
+		user.setPassword(new String(aes.Decryptor(ParseHexUtil.parseHexStr2Byte(user.getPassword()))));
+		return user;
 	}
 
 	@Override

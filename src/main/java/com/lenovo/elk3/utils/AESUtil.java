@@ -7,10 +7,9 @@ import java.security.Security;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import com.sun.crypto.provider.SunJCE;
 
 public class AESUtil {
     //SecretKey 负责保存对称密钥  
@@ -23,7 +22,7 @@ public class AESUtil {
     private final String key = "QaZxSwEdCvFrTgBn";
     
     public AESUtil() throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException{  
-        Security.addProvider(new com.sun.crypto.provider.SunJCE());  
+        Security.addProvider(new SunJCE());  
         //实例化支持DES算法的密钥生成器(算法名称命名需按规定，否则抛出异常)  
         //生成密钥  
         deskey = new SecretKeySpec(key.getBytes(), "AES");
